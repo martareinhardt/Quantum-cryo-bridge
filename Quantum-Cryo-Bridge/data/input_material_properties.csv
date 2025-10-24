@@ -1,0 +1,30 @@
+Material_ID,Component_Use,T_K,Thermal_Conductivity_W_mK,Emissivity_ratio,Specific_Heat_J_kgK
+# --- BLINDAGENS E ALTA CONDUTIVIDADE ---
+# Copper OFHC Polished (Stage 2 / 4K)
+Copper_OFHC_Polished,Inner_Shield_4K_Stage,4.2,450.0,0.02,0.0001
+Copper_OFHC_Polished,Inner_Shield_4K_Stage,77.0,150.0,0.02,0.15
+Copper_OFHC_Polished,Inner_Shield_4K_Stage,300.0,380.0,0.02,385.0
+
+# Aluminum 6061-T6 (Stage 1 / 77K)
+Aluminum_6061_T6,Mid_Shield_77K_Stage,4.2,20.0,0.05,0.001
+Aluminum_6061_T6,Mid_Shield_77K_Stage,77.0,150.0,0.05,0.20
+Aluminum_6061_T6,Mid_Shield_77K_Stage,300.0,180.0,0.05,900.0
+
+# Stainless Steel 304 (Outer Vacuum Jacket)
+Stainless_Steel_304,Outer_Vacuum_Jacket,4.2,0.50,0.40,0.01
+Stainless_Steel_304,Outer_Vacuum_Jacket,77.0,8.0,0.40,250.0
+Stainless_Steel_304,Outer_Vacuum_Jacket,300.0,15.0,0.40,500.0
+
+# --- SUPORTES E ISOLAMENTO (BAIXA CONDUTIVIDADE) ---
+# G-10 Fiberglass (Support Rods)
+G-10_Fiberglass,Support_Rod,4.2,0.02,0.90,0.005
+G-10_Fiberglass,Support_Rod,77.0,0.25,0.90,0.150
+G-10_Fiberglass,Support_Rod,300.0,0.40,0.90,1100.0
+
+# Vespel SP-1 (Insulators/Spacers)
+Vespel_SP-1,Insulator_Spacer,4.2,0.015,0.85,0.003
+Vespel_SP-1,Insulator_Spacer,77.0,0.030,0.85,0.050
+Vespel_SP-1,Insulator_Spacer,300.0,0.35,0.85,1130.0
+
+# --- INOVAÇÃO (Valores-alvo/hipotéticos para o modelo) ---
+Carbon_Nanotubes_Array,Heat_Evacuation_Layer,4.2,1.0,0.95,0.001

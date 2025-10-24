@@ -1,0 +1,48 @@
+{
+    "Project_ID": "Q-BRIDGE-V1.0",
+    "Model_Purpose": "Steady-State Heat Load and Cool-Down Analysis",
+    
+    "Boundary_Conditions": {
+        "Ambient_Temperature_K": 300.0,
+        "Cryocooler_Interface_77K": 77.0,
+        "Cryocooler_Interface_4K": 4.2,
+        "Target_Qubit_Temperature_mK": 20.0,
+        "Internal_Heat_Load_mW": 0.0015,
+        "Vacuum_Level_mbar": 1.0e-7
+    },
+    
+    "Geometric_Parameters_Outer_Vessel": {
+        "Outer_Vessel_Material": "Stainless_Steel_304",
+        "Outer_Diameter_mm": 500,
+        "Height_mm": 750,
+        "Wall_Thickness_mm": 5
+    },
+    
+    "Geometric_Parameters_Shields": [
+        {
+            "Stage": "77K_Shield",
+            "Material_ID": "Aluminum_6061_T6",
+            "Thickness_mm": 3.0,
+            "Height_mm": 600
+        },
+        {
+            "Stage": "4K_Shield",
+            "Material_ID": "Copper_OFHC_Polished",
+            "Thickness_mm": 5.0,
+            "Height_mm": 500
+        }
+    ],
+    
+    "Support_Structure_Parameters": {
+        "Support_Material_ID": "G-10_Fiberglass",
+        "Number_of_Rods": 3,
+        "Rod_Length_mm": 700,
+        "Rod_Diameter_mm": 8.0
+    },
+    
+    "Nanotube_Evacuation_Layer": {
+        "Active": true,
+        "Layer_Thickness_mm": 1.0,
+        "Target_Thermal_Resistance_K_W": 500000 
+    }
+}

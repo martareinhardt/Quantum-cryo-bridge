@@ -1,0 +1,11 @@
+# Data Transmission Channel Geometry and Electrical Specifications
+
+Component_ID,Channel_Type,Material_Conductor,Material_Dielectric,Length_m,Outer_Shield_Diameter_mm,Inner_Conductor_Diameter_mm,Operating_Frequency_GHz
+Channel_A,Quantum_Data_Send,Niobium_Titanium,Vacuum,1.5,10.0,0.5,4.0-8.0
+Channel_B,Quantum_Data_Receive,Niobium_Titanium,Vacuum,1.5,10.0,0.5,4.0-8.0
+Channel_C,Classical_Control_1,Stainless_Steel_Coaxial,PTFE,1.5,2.0,0.3,0.1-1.0
+Channel_D,Classical_Control_2,Stainless_Steel_Coaxial,PTFE,1.5,2.0,0.3,0.1-1.0
+
+# Crosstalk Parameters
+Separation_Distance_A_B_mm,Shield_Material,Isolation_Target_dB
+50.0,Copper_OFHC_Electrolytic,100
