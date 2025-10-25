@@ -1,0 +1,20 @@
+# Dependências principais do projeto Quantum Cryo Bridge
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
+pandas>=2.0
+sympy>=1.12
+seaborn>=0.12
+plotly>=5.15
+notebook>=7.0
+ipykernel>=6.25
+
+# Ferramentas auxiliares
+pytest>=7.3
+requests>=2.31
+tqdm>=4.65
+
+# Compatibilidade e ambiente
+python-dotenv>=1.0
+
+
