@@ -9,13 +9,13 @@ from datetime import datetime
 
 # === Caminhos base ===
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-FONTE_DIR = os.path.join(BASE_DIR, "fonte")
+SRC_DIR = os.path.join(BASE_DIR, "src")
 DATA_DIR = os.path.join(BASE_DIR, "data", "sample_run_2024")
 LOGS_DIR = os.path.join(BASE_DIR, "logs")
 
-# === Garantir que o diretório de código-fonte está no PYTHONPATH ===
-if FONTE_DIR not in sys.path:
-    sys.path.insert(0, FONTE_DIR)
+# === Garantir que o diretório src está no PYTHONPATH ===
+if SRC_DIR not in sys.path:
+    sys.path.insert(0, SRC_DIR)
 if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
@@ -43,7 +43,7 @@ def rodar_simulacoes():
         from simulations.cryo_dynamics import simular_dinamica_criogenica
     except ModuleNotFoundError as e:
         print(f"❌ Erro ao importar módulos: {e}")
-        print("💡 Verifique se a pasta 'simulations' está dentro de 'fonte/' e contém __init__.py")
+        print("💡 Verifique se a pasta 'src/simulations' contém __init__.py")
         raise
 
     resultados_ponte = executar_ponte_quantica()
