@@ -2,17 +2,22 @@
 cryo_dynamics.py — Simulação da dinâmica criogênica.
 """
 
+import random
+import time
+
 def simular_dinamica_criogenica():
     """
-    Simula o resfriamento criogênico do sistema.
-    Retorna resultados com temperatura e tempo de estabilização.
+    Simula o processo de resfriamento e equilíbrio criogênico.
+    Retorna dados de temperatura e energia.
     """
     print("🧊 Simulando dinâmica criogênica...")
-    resultados = {
-        "temperatura_inicial": 300,
-        "temperatura_final": 0.003,
-        "tempo_estabilizacao": 42.7,
-        "sucesso": True
-    }
-    print("✅ Simulação criogênica concluída.")
-    return resultados
+
+    temperaturas = []
+    temperatura = 1.0  # temperatura inicial (K)
+    for etapa in range(10):
+        temperatura *= random.uniform(0.85, 0.95)
+        temperaturas.append(round(temperatura, 5))
+        time.sleep(0.1)
+
+    print("✅ Dinâmica criogênica concluída.")
+    return {"status": "ok", "temperaturas": temperaturas, "temperatura_final": temperaturas[-1]}
