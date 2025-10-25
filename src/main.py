@@ -1,7 +1,6 @@
-"""
 main.py — módulo principal do Quantum Cryo Bridge
 Executa as simulações de interface quântica com resfriamento criogênico.
-"""
+
 
 import os
 import sys
