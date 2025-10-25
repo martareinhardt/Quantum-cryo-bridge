@@ -1,89 +1,67 @@
-# 1. IMPORTAÇÕES
-# ==============================================================================
-# Importa módulos padrão
-import matplotlib.pyplot as plt
-import numpy as np
-x = np.linspace(0, 10, 100)
-y = np.sin(x)  # Substitua pela sua simulação
-plt.plot(x, y, label="Simulação")
-plt.xlabel("X")
-plt.ylabel("Y")
-plt.legend()
-plt.show()
-import sys
+"""
+main.py — módulo principal do Quantum Cryo Bridge
+Executa as simulações de interface quântica com resfriamento criogênico.
+"""
+
 import os
-import argparse # Para lidar com argumentos de linha de comando (opcional, mas bom)
+import sys
+from datetime import datetime
 
-# Importa as suas próprias funções/classes de outros ficheiros em 'src/'
-# Você criará esses ficheiros (ex: analysis.py, model.py, config.py) mais tarde.
-from . import config # Para carregar configurações
-from . import analysis # Para funções de análise de dados
-from . import model # Para funções de modelagem/simulação
+# Caminho base do projeto
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+DATA_DIR = os.path.join(BASE_DIR, "data", "sample_run_2024")
 
-# 2. FUNÇÃO PRINCIPAL (MAIN)
-# ==============================================================================
+def verificar_pasta_dados():
+    """
+    Verifica se a pasta de dados existe.
+    Se não existir, exibe erro e interrompe a execução.
+    """
+    print(f"📂 Diretório base: {BASE_DIR}")
+    print(f"📊 Pasta de dados: {DATA_DIR}")
+
+    if not os.path.exists(DATA_DIR):
+        raise FileNotFoundError(
+            f"ERRO: Pasta de dados não encontrada em: {DATA_DIR}\n"
+            "Dica: Crie 'data/sample_run_2024' com os arquivos necessários."
+        )
+
+def rodar_simulacoes():
+    """
+    Executa as simulações principais da ponte quântica criogênica.
+    """
+    print("\n🚀 Iniciando simulações quânticas...")
+    from simulations.quantum_bridge import executar_ponte_quantica
+    from simulations.cryo_dynamics import simular_dinamica_criogenica
+
+    resultados_ponte = executar_ponte_quantica()
+    resultados_cryo = simular_dinamica_criogenica()
+
+    print("\n✅ Simulações concluídas com sucesso!")
+    print(f"🧊 Resultados criogênicos: {resultados_cryo}")
+    print(f"🔗 Resultados quânticos: {resultados_ponte}")
+
+def salvar_log_execucao():
+    """
+    Salva um log da execução no diretório 'logs'.
+    """
+    logs_dir = os.path.join(BASE_DIR, "logs")
+    os.makedirs(logs_dir, exist_ok=True)
+
+    log_path = os.path.join(logs_dir, f"execucao_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
+    with open(log_path, "w", encoding="utf-8") as f:
+        f.write("Execução concluída com sucesso.\n")
+        f.write(f"Data: {datetime.now()}\n")
+        f.write(f"Diretório de dados: {DATA_DIR}\n")
+    print(f"📝 Log salvo em: {log_path}")
+
 def main():
-    """
-    Função principal que coordena o fluxo de trabalho do projeto Quantum-Cryo-Bridge.
-    """
-    # 2.1. CONFIGURAÇÃO E ARGUMENTOS
-    # --------------------------------------------------------------------------
-    # Exemplo simples de argumento: qual dataset usar
-    parser = argparse.ArgumentParser(description="Análise e modelagem para Quantum-Cryo-Bridge.")
-    parser.add_argument(
-        '--dataset',
-        type=str,
-        default=config.DEFAULT_DATASET, # Valor padrão do seu ficheiro config.py
-        help="Nome da pasta de dados a ser processada dentro de 'data/'."
-    )
-    args = parser.parse_args()
-
-    # Define o caminho para a pasta de dados
-    # (Ajuste o caminho conforme a sua estrutura de ficheiros)
-    data_path = os.path.join(
-        os.path.dirname(os.path.dirname(__file__)), # Volta dois níveis (sai de src/ e Quantum-Cryo-Bridge/)
-        'data',
-        args.dataset
-    )
-
-    if not os.path.exists(data_path):
-        print(f"ERRO: Pasta de dados não encontrada em: {data_path}")
-        sys.exit(1)
-
-    print(f"Iniciando análise para o dataset: {args.dataset}")
-
-    # 2.2. FLUXO DE TRABALHO PRINCIPAL
-    # --------------------------------------------------------------------------
     try:
-        # A. CARREGAR DADOS
-        raw_data = analysis.load_data(data_path)
-        print(f"Dados brutos carregados: {len(raw_data)} pontos.")
-
-        # B. PRÉ-PROCESSAMENTO
-        processed_data = analysis.preprocess_data(raw_data)
-
-        # C. MODELAGEM / SIMULAÇÃO (o coração do projeto)
-        
-        # Exemplo 1: Simular a perda de coerência na ponte
-        simulation_results = model.run_simulation(processed_data, config.MODEL_PARAMS)
-        print("Simulação do modelo concluída.")
-        
-        # Exemplo 2: Ajustar a curva de ressonância dos dados
-        # fit_results = model.fit_resonance(processed_data)
-        
-        # D. VISUALIZAÇÃO/RELATÓRIO
-        analysis.generate_report(simulation_results, args.dataset)
-        print(f"Relatório de análise/simulação salvo com sucesso para {args.dataset}.")
-
+        verificar_pasta_dados()
+        rodar_simulacoes()
+        salvar_log_execucao()
     except Exception as e:
-        print(f"Ocorreu um erro durante a execução: {e}")
+        print(e)
         sys.exit(1)
 
-
-# 3. PONTO DE ENTRADA (BOILERPLATE)
-# ==============================================================================
 if __name__ == "__main__":
-    # É aqui que o programa começa quando você o executa na linha de comando
-    # Ex: python -m src.main --dataset 'experimento_1'
     main()
-  
