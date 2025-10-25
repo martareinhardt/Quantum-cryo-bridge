@@ -23,23 +23,26 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           if [ -f requisitos.txt ]; then
-            echo "Instalando pacotes do requisitos.txt..."
             pip install -r requisitos.txt
           else
-            echo "⚠️ Arquivo requisitos.txt não encontrado. Pulando instalação de dependências."
+            echo "⚠️ Nenhum arquivo requisitos.txt encontrado, pulando instalação."
           fi
 
-      - name: 🚀 Rodar simulações
+      - name: 🚀 Executar simulações
         run: |
-          echo "Executando simulações..."
-          python src/main.py
-          echo "✅ Simulações concluídas com sucesso!"
+          echo "Executando simulações do Quantum Cryo Bridge..."
+          python -m src.main
+        env:
+          PYTHONPATH: src
 
-      - name: 💾 Salvar resultados
+      - name: 📊 Salvar resultados e logs
         uses: actions/upload-artifact@v4
         with:
           name: resultados-simulacoes
           path: |
-            relatorios/
-            src/data/
+            logs/
+            data/
           if-no-files-found: ignore
+
+      - name: ✅ Finalização
+        run: echo "Pipeline concluído com sucesso ✅"
