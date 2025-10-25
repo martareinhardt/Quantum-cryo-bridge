@@ -1,2 +1,3 @@
-# Inicializador do pacote simulations
-# Permite importar os módulos de simulação no main.py
+"""
+Pacote simulations — contém os módulos de simulação do Quantum Cryo Bridge.
+"""
