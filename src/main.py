@@ -1,6 +1,6 @@
 """
 main.py — módulo principal do Quantum Cryo Bridge
-Executa as simulações de interface quântica com resfriamento criogênico.
+Executa as simulações quânticas, criogênicas e de transmissão de dados.
 """
 
 import os
@@ -27,7 +27,7 @@ def verificar_pasta_dados():
 
 def rodar_simulacoes():
     """
-    Executa as simulações principais da ponte quântica criogênica.
+    Executa todas as simulações principais da ponte quântica criogênica.
     """
     print("\n🚀 Iniciando simulações quânticas...")
 
@@ -37,32 +37,44 @@ def rodar_simulacoes():
         from simulations.data_transmission import analisar_crosstalk
     except ModuleNotFoundError as e:
         print(f"❌ Erro ao importar módulos: {e}")
-        print("💡 Verifique se a pasta 'src/simulations' contém __init__.py e os arquivos de simulação.")
-        raise
+        print("💡 Verifique se a pasta 'src/simulations' contém __init__.py e os arquivos .py.")
+        sys.exit(1)
 
     resultados_ponte = executar_ponte_quantica()
     resultados_cryo = simular_dinamica_criogenica()
     resultados_crosstalk = analisar_crosstalk()
 
     print("\n✅ Simulações concluídas com sucesso!")
-    print(f"🧊 Resultados criogênicos: {resultados_cryo}")
-    print(f"🔗 Resultados quânticos: {resultados_ponte}")
-    print(f"📡 Resultados de transmissão: {resultados_crosstalk}")
+    print(f"🔗 Ponte quântica: {resultados_ponte}")
+    print(f"🧊 Dinâmica criogênica: {resultados_cryo}")
+    print(f"📡 Transmissão de dados: {resultados_crosstalk}")
 
-    # Retorna para eventual uso futuro (ex: geração de relatórios)
-    return {
-        "ponte_quântica": resultados_ponte,
-        "dinâmica_criogênica": resultados_cryo,
-        "transmissão_dados": resultados_crosstalk
-    }
-
-def salvar_log_execucao(resultados):
+def salvar_log_execucao():
     """
     Salva um log da execução no diretório 'logs'.
     """
     logs_dir = os.path.join(BASE_DIR, "logs")
     os.makedirs(logs_dir, exist_ok=True)
 
-    log_path = os.path.join(logs_dir, f"execucao_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
+    log_path = os.path.join(
+        logs_dir, f"execucao_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+    )
+
     with open(log_path, "w", encoding="utf-8") as f:
-        f.write("=== Quantum
+        f.write("Execução concluída com sucesso.\n")
+        f.write(f"Data: {datetime.now()}\n")
+        f.write(f"Diretório de dados: {DATA_DIR}\n")
+
+    print(f"📝 Log salvo em: {log_path}")
+
+def main():
+    try:
+        verificar_pasta_dados()
+        rodar_simulacoes()
+        salvar_log_execucao()
+    except Exception as e:
+        print(f"❌ Erro fatal: {e}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
