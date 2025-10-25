@@ -27,7 +27,9 @@ jobs:
     - name: Rodar simulações
       run: |
         echo "Executando simulações..."
-        python src/main.py
+        # Se o arquivo estiver em fonte/main.py use esta linha:
+        python fonte/main.py
+        # Se estiver em src/main.py ou outro caminho, ajuste o nome aqui
         echo "Simulações concluídas."
 
     - name: Salvar resultados
@@ -36,5 +38,5 @@ jobs:
         name: resultados-simulacoes
         path: |
           relatorios/
-          Quantum-Cryo-Bridge/data/simulations/output/
+          Quantum-cryo-bridge/data/simulations/output/
         if-no-files-found: ignore
